@@ -3,13 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, LockOpen } from "lucide-react";
 
-// type User = {
-//   id: number;
-//   name: string;
-//   email: string;
-// };
-
-
 export default function FormPage() {
   const navigate = useNavigate();
 
