@@ -1,4 +1,7 @@
 import axios from "axios";
+
+import { motion } from "framer-motion";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, LockOpen } from "lucide-react";
@@ -26,7 +29,7 @@ export default function FormPage() {
       setSuccess("");
 
       const response = await axios.post(
-        "http://localhost:4000/user/register",
+       `${import.meta.env.VITE_API_URL}/user/register`,
         {
           name,
           email,
@@ -70,11 +73,17 @@ export default function FormPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[linear-gradient(90deg,rgba(2,0,36,1)_0%,rgba(9,9,121,1)_35%,rgba(0,212,255,1)_100%)] 
+    <div
+    
+    className="min-h-screen bg-[linear-gradient(90deg,rgba(2,0,36,1)_0%,rgba(9,9,121,1)_35%,rgba(0,212,255,1)_100%)] 
     px-4 py-10 text-white">
 
-      <div className="mx-auto max-w-md ">
 
+      <motion.div 
+      initial={{ opacity: 0, x: -60 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8 }}
+      className="mx-auto max-w-md ">
         {/* Header */}
         <div className="mb-8 text-center ">
           <h1 className="text-4xl font-bold">
@@ -85,6 +94,7 @@ export default function FormPage() {
             Create your account
           </p>
         </div>
+
 
         {/* Form Card */}
         <div className="rounded-3xl border border-white/10 bg-black/20 p-8 shadow-2xl backdrop-blur-xl hover:scale-105 
@@ -162,18 +172,10 @@ export default function FormPage() {
 
                 <button
                   type="button"
-                  onClick={() =>
-                    setShowPassword(
-                      !showPassword
-                    )
-                  }
+                  onClick={() => setShowPassword( !showPassword )}
                   className=" absolute right-3 top-1/2 -translate-y-1/2 text-white/50 transition hover:text-cyan-300 
                   cursor-pointer">
-                  {showPassword ? (
-                    <LockOpen size={20} />
-                  ) : (
-                    <Lock size={20} />
-                  )}
+                  {showPassword ? ( <LockOpen size={20}/> ) : ( <Lock size={20}/> )}
                 </button>
 
               </div>
@@ -185,12 +187,11 @@ export default function FormPage() {
               disabled={loading}
               className="w-full rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-slate-950 shadow-lg 
               shadow-cyan-400/20 transition-all hover:bg-cyan-500 active:scale-[0.98] disabled:opacity-50 cursor-pointer">
-              {loading
-                ? "Creating Account..."
-                : "Create Account"}
+              {loading ? "Creating Account..." : "Create Account"}
             </button>
 
           </form>
+
 
           {/* Error */}
           {error && (
@@ -198,6 +199,7 @@ export default function FormPage() {
               {error}
             </div>
           )}
+
 
           {/* Success */}
           {success && (
@@ -208,7 +210,8 @@ export default function FormPage() {
 
         </div>
 
-      </div>
+      </motion.div>
+
     </div>
   );
 }
