@@ -40,7 +40,7 @@ export default function Home() {
                       </span>
                     </div>
 
-                    <h1 className="text-5xl font-bold leading-tight">
+                    <h1 className="text-4xl font-bold leading-tight">
                         Manage Your Users
                         <span className="block text-cyan-300">
                           Easily & Securely
@@ -57,8 +57,7 @@ export default function Home() {
                     </span>
                     
 
-                    <div className="mt-8 flex items-center gap-4">
-
+                    <div className="mt-8 flex items-center gap-3 ">
                       <motion.div
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -66,9 +65,9 @@ export default function Home() {
                         <Link
                           to="/register"
                           className="
-                            flex items-center gap-2 rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition  hover:bg-cyan-300  ">
+                            flex items-center gap-2 rounded-xl bg-cyan-400 px-4 py-3 font-semibold text-slate-950 shadow-lg shadow-cyan-400/20 transition  hover:bg-cyan-300  text-[12px] sm:text-[15px]">
                           <User size={18} />
-                          Register User
+                              Register User
                           <ArrowRight size={18} />
                         </Link>
                       </motion.div>
@@ -80,7 +79,7 @@ export default function Home() {
                         <Link
                           to="/user"
                           className="
-                            flex items-center gap-2 rounded-xl border border-white/40 bg-white/10   px-6 py-3 font-semibold text-white backdrop-blur-xl transition hover:bg-white/20">
+                            flex items-center gap-2 rounded-xl border border-white/40 bg-white/10   px-6 py-3 font-semibold text-white backdrop-blur-xl transition hover:bg-white/20 text-[12px] sm:text-[15px]">
                           <Users size={18} />
                           View Users
                         </Link>

@@ -103,7 +103,7 @@ export default function UserData() {
                 </div>
 
                 <div>
-                  <h1 className="text-3xl font-bold">
+                  <h1 className="text-2xl font-bold">
                     All Users
                   </h1>
 
@@ -245,7 +245,7 @@ export default function UserData() {
 
                   {/* Columns */}
                   <thead>
-                    <tr className="border-b border-white/10 bg-white/5">
+                    <tr className="border-b border-white/10 bg-white/5 ">
 
                       <th
                         className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
