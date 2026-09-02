@@ -7,18 +7,19 @@ export default function Home() {
 
   const homwpagetitle = [
     {heading:"User Management System"},
-    {para:`Create, manage and view your users through a simple, modern and responsive user management application.`}
+    {para:<>Create, manage and view your users through a simple, modern<br />
+     and responsive user management application.</>}
   ]
 
   return (
 
     <div
       className="  min-h-screen bg-[linear-gradient(90deg,rgba(2,0,36,1)_0%,rgba(9,9,121,1)_35%,rgba(0,212,255,1)_100%)]
-       text-white" >
+       text-white " >
 
         {/* Hero */}
-        <main className="mx-auto flex min-h-[calc(100vh-140px)] max-w-6xl items-center px-6 ">
-            <div className="flex w-full items-center justify-center gap-12 ">
+        <main className="mx-auto flex min-h-[calc(100vh-130px)] max-w-6xl items-center justify-center  p-6 ">
+            <div className="flex w-full items-center justify-center gap-10 ">
 
               <motion.div
                 initial={{ opacity: 0, x: -60 }}
