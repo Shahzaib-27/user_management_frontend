@@ -11,8 +11,9 @@ type UserDataType = {
   id: number;
   name: string;
   email: string;
+  phone:string;
+  address:string;
 };
-
 
 export default function UserData() {
   const navigate = useNavigate();
@@ -24,30 +25,30 @@ export default function UserData() {
 
   // GET ALL USERS
   const getUsers = async () => {
-    try {
-      setLoading(true);
-      setError("");
+  try {
+    setLoading(true);
+    setError("");
 
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/user/login`
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/user/login`
+    );
+
+    setUsers(response.data.data ?? []);
+  } catch (error) {
+    console.log("Error fetching users:", error);
+
+    if (axios.isAxiosError(error)) {
+      setError(
+        error.response?.data?.message ||
+          "Failed to fetch users!"
       );
-
-      setUsers(response.data.data);
-    } catch (error) {
-      console.log("Error fetching users:", error);
-
-      if (axios.isAxiosError(error)) {
-        setError(
-          error.response?.data?.message ||
-            "Failed to fetch users!"
-        );
-      } else {
-        setError("Failed to fetch users!");
-      }
-    } finally {
-      setLoading(false);
+    } else {
+      setError("Failed to fetch users!");
     }
-  };
+  } finally {
+    setLoading(false);
+  }
+};
 
   
   // DELETE USER
@@ -268,6 +269,18 @@ export default function UserData() {
                       <th
                         className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
                       >
+                        phone
+                      </th>
+
+                      <th
+                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
+                      >
+                        address
+                      </th>
+
+                      <th
+                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
+                      >
                         Actions
                       </th>
 
@@ -331,6 +344,37 @@ export default function UserData() {
                           </div>
                         </td>
 
+
+
+                        {/* Phone */}
+                        <td className="px-6 py-5">
+                          <div className="flex items-center gap-1.5">
+                              <div
+                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
+                              >
+                                <Mail size={18} />
+                              </div>
+
+                            <span className="text-white">
+                              {user.phone}
+                            </span>
+                          </div>
+                        </td>
+
+                      {/* Address */}
+                        <td className="px-6 py-5">
+                          <div className="flex items-center gap-1.5">
+                              <div
+                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
+                              >
+                                <Mail size={18} />
+                              </div>
+
+                            <span className="text-white">
+                              {user.address}
+                            </span>
+                          </div>
+                        </td>
 
                         {/* Delete */}
                         <td className="px-6 py-5">
