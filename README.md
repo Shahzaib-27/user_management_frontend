@@ -1,35 +1,236 @@
-# React + TypeScript + Vite
+# User Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A simple and responsive **User Management System** built with **HTML, CSS, JavaScript, and Express.js**.
 
-Currently, two official plugins are available:
+The project implements basic user management functionality including creating, viewing, updating, deleting, restoring users, input validation, unique email checking, and basic authentication.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Demo
 
-## React Compiler
+**Frontend:**
+https://user-management-frontend-ruby.vercel.app/
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## 📌 Features
 
-## Expanding the Oxlint configuration
+* Create new users
+* Get all users
+* Get a single user by ID
+* Update one or more user fields
+* Soft delete users
+* Restore deleted users
+* Validate user input before storing
+* Unique email constraint
+* Basic username/password authentication
+* Sequential user IDs (`1`, `2`, `3`, ...)
+* Store user data in a separate JSON database file
+* Responsive and simple user interface
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+---
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## 🛠️ Technologies Used
+
+### Frontend
+
+* HTML
+* CSS
+* JavaScript
+
+### Backend
+
+* Node.js
+* Express.js
+
+### Database
+
+* JSON file
+* In-memory user management
+
+### Authentication
+
+* Basic Authentication
+* Username and password verification
+* Bcrypt or password hashing
+
+---
+
+## 📁 Project Structure
+
+```text
+user-management/
+│
+├── backend/
+│   │
+│   ├── controllers/
+│   │   └── userController.js
+│   │
+│   ├── models/
+│   │   └── userModel.js
+│   │
+│   ├── routes/
+│   │   └── userRoutes.js
+│   │
+│   ├── db/
+│   │   └── database.json
+│   │
+│   ├── app.js
+│   ├── package.json
+│   └── server.js
+│
+├── frontend/
+│   │
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+│
+└── README.md
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+---
+
+## ✅ User Validation
+
+Before a user is stored, the server validates:
+
+* Username
+* Password
+* Email
+* Contact
+* Address
+
+The server checks that:
+
+* Required fields are provided
+* Username is valid
+* Password is provided
+* Email has a valid format
+* Contact contains valid information
+* Address is provided
+
+Invalid data is rejected before it is stored.
+
+---
+
+Another user cannot register using the same email.
+
+The server returns an error instead of creating a duplicate user.
+
+---
+
+
+## 🔐 Basic Authentication
+
+Protected routes use simple Basic Authentication.
+
+The application verifies:
+
+```text
+Username
+Password
+```
+
+No bcrypt or password hashing is used because this project is designed as a simple learning project.
+
+Example:
+
+```text
+Username: admin
+Password: 123456
+```
+
+## ⚙️ Installation
+
+### 1. Clone the repository
+
+```bash
+git clone YOUR_REPOSITORY_URL
+```
+
+### 2. Go to the backend folder
+
+```bash
+cd backend
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+The project only requires Express.js for the backend.
+
+### 4. Start the server
+
+```bash
+node server.js
+```
+
+The backend will run on:
+
+```text
+http://localhost:3000
+```
+
+---
+
+## 💻 Frontend
+
+Open the frontend in your browser or serve it through the backend's public folder, depending on your project setup.
+
+The frontend communicates with the Express.js API to:
+
+* Add users
+* Display users
+* Edit users
+* Delete users
+* Restore users
+* Authenticate users
+
+---
+
+## 🎯 Project Objectives
+
+This project was created to demonstrate how to build a simple user management system using fundamental web technologies.
+
+The main objectives are:
+
+1. Implement CRUD operations.
+2. Store user data in a separate JSON file.
+3. Validate user input before storing it.
+4. Prevent duplicate email addresses.
+5. Allow partial user updates.
+6. Implement soft delete functionality.
+7. Implement user restoration.
+8. Protect routes using Basic Authentication.
+9. Generate sequential user IDs.
+10. Keep the project simple and easy to understand.
+
+---
+
+## 📚 Learning Concepts
+
+This project demonstrates:
+
+* REST APIs
+* HTTP methods
+* Express.js routing
+* Controllers
+* Models
+* JSON file storage
+* Input validation
+* Authentication
+* CRUD operations
+* Partial updates
+* Soft deletion
+* RESToration
+* Frontend API requests
+* Client-server communication
+
+---
+
+## ⚠️ Disclaimer
+
+This is an educational project designed to demonstrate basic CRUD operations and authentication.
+
+Passwords are stored without hashing to keep the implementation simple. For a production application, passwords should **never** be stored as plain text; proper password hashing and a more secure authentication system should be used.
