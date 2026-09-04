@@ -3,7 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 
 import { useEffect, useState } from "react";
-import { User, ArrowLeft, RefreshCw, Trash2,Mail } from "lucide-react";
+import { User, ArrowLeft, RefreshCw, Trash2,Mail,Phone,MapPin ,IdCard   } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -16,12 +16,21 @@ type UserDataType = {
 };
 
 export default function UserData() {
+
+  const Columns = [
+    { Heading:"ID",  },
+    { Heading:"Name",  },
+    { Heading:"Email",  },
+    { Heading:"phone",  },
+    { Heading:"address",  },
+    { Heading:"Actions",  }
+  ];
+
   const navigate = useNavigate();
 
   const [users, setUsers] = useState<UserDataType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
 
   // GET ALL USERS
   const getUsers = async () => {
@@ -116,7 +125,6 @@ export default function UserData() {
 
               {/* Buttons */}
               <div className="flex gap-3">
-
 
                 {/* Refresh */}
                 <button
@@ -232,7 +240,7 @@ export default function UserData() {
                 </div>
 
                 <div
-                  className="rounded-full bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+                  className="rounded-full bg-cyan-300/80 px-4 py-2 text-sm font-medium text-black"
                 >
                   {users.length} Users
                 </div>
@@ -241,160 +249,59 @@ export default function UserData() {
 
               {/* Table */}
               <div className="overflow-x-auto">
-
                 <table className="w-full min-w-175 text-left">
 
                   {/* Columns */}
                   <thead>
                     <tr className="border-b border-white/10 bg-white/5 ">
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        ID
-                      </th>
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        Name
-                      </th>
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        Email
-                      </th>
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        phone
-                      </th>
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        address
-                      </th>
-
-                      <th
-                        className="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-white/40"
-                      >
-                        Actions
-                      </th>
-
-                    </tr>
-                  </thead>
+                      {Columns.map((title,index) => (
+                        <th key={index}>
+                            <div className="px-6 py-4 text-xs font-semibold uppercase  tracking-wider text-white/40">
+                              {title.Heading}
+                            </div>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
 
 
                   {/* Rows */}
                   <tbody>
+  
+                  {users.map((user) => (
+                    <tr
+                      key={user.id}
+                      className="border-b border-white/5 hover:bg-white/5" >
 
-                    {users.map((user) => (
-
-                      <tr
-                        key={user.id}
-                        className="border-b border-white/5 transition hover:bg-white/5"
-                      >
-
-                        {/* ID */}
-                        <td className="px-6 py-5">
-
-                          <span
-                            className="inline-flex h-9 min-w-9 items-center justify-center rounded-lg
-                            bg-cyan-400/10 px-3 text-sm font-semibold text-cyan-300"
-                          >
-                            {user.id}
-                          </span>
-
-                        </td>
-
-                        {/* Name */}
-                        <td className="px-6 py-5">
-
-                          <div className="flex items-center gap-1.5">
-
-                            <div
-                              className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
-                            >
-                              <User size={18} />
-                            </div>
-
-                            <span className="font-medium">
-                              {user.name}
-                            </span>
-
-                          </div>
-
-                        </td>
-
-                        {/* Email */}
-                        <td className="px-6 py-5">
-                          <div className="flex items-center gap-1.5">
-                              <div
-                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
-                              >
-                                <Mail size={18} />
-                              </div>
-
-                            <span className="text-white">
-                              {user.email}
-                            </span>
+                      {/* User Details */}
+                      {[
+                        { icon: IdCard , value: user.id },
+                        { icon: User, value: user.name },
+                        { icon: Mail, value: user.email },
+                        { icon: Phone, value: user.phone },
+                        { icon: MapPin, value: user.address },
+                      ].map(({ icon: Icon, value }) => (
+                        <td className="px-6 py-5" key={value}>
+                          <div className="flex items-center gap-2">
+                            <Icon size={19} className="text-cyan-300" />
+                            <span>{value}</span>
                           </div>
                         </td>
+                      ))}
 
 
-
-                        {/* Phone */}
-                        <td className="px-6 py-5">
-                          <div className="flex items-center gap-1.5">
-                              <div
-                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
-                              >
-                                <Mail size={18} />
-                              </div>
-
-                            <span className="text-white">
-                              {user.phone}
-                            </span>
-                          </div>
-                        </td>
-
-                      {/* Address */}
-                        <td className="px-6 py-5">
-                          <div className="flex items-center gap-1.5">
-                              <div
-                                className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-cyan-300"
-                              >
-                                <Mail size={18} />
-                              </div>
-
-                            <span className="text-white">
-                              {user.address}
-                            </span>
-                          </div>
-                        </td>
-
-                        {/* Delete */}
-                        <td className="px-6 py-5">
-                          <button
-                            type="button"
-                            onClick={() => deluser(user.id)}
-                            className="flex cursor-pointer items-center gap-2 rounded-lg bg-red-500/20 px-4 
-                            py-2 text-sm font-medium text-red-400 transition-all duration-300 ease-initial hover:bg-red-900 hover:text-white/90"
-                          >
-                            <Trash2 size={16} />
-                            Delete
-                          </button>
-
-                        </td>
-
-                      </tr>
-
-                    ))}
-
+                      {/* Delete */}
+                      <td className="px-6 py-5">
+                        <button
+                          onClick={() => deluser(user.id)}
+                          className="rounded-lg bg-red-900 p-2 text-red-100 hover:bg-red-700 hover:text-white cursor-pointer transition-all duration-100 ease-in" >
+                          <Trash2 size={16} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
                   </tbody>
+
                 </table>
               </div>
             </div>

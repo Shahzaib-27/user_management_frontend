@@ -85,6 +85,7 @@ export default function FormPage() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
       className="mx-auto max-w-md ">
+        
         {/* Header */}
         <div className="mb-8 text-center ">
           <h1 className="text-4xl font-bold">
@@ -101,6 +102,7 @@ export default function FormPage() {
         transition-all duration-200 ease-in">
 
           <form onSubmit={handleRequest}>
+
               {/* Name */}
               <div className="mb-5 ">
                 <label className="mb-2 block text-sm font-medium text-white/70">
